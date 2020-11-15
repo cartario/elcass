@@ -27,6 +27,7 @@ const table = createElement(`<table>
 
 class Raw {
   constructor({ name: name, item: post, item: count }, isLoaded) {
+    
     this.name = name;
     this.post = post.title;
     this.count = count.comments.length;
@@ -42,7 +43,7 @@ class Raw {
     <div class="post">
       ${this.post}
     </div>
-    <div class="comment">
+    <div class="comment" style="color:blue">
       ${!!this.isLoaded? this.count : '...Loading'}
     </div>
   </div>`;
@@ -57,7 +58,7 @@ class Raw {
 
   setClickHandler(handler) {
     this.handler=handler;
-    this.element.addEventListener('click', this.handler);    
+    this.element.addEventListener('click', this.handler);            
   }
 
   removeElement(){

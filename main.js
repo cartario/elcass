@@ -1,5 +1,7 @@
 'use strict';
 
+const status = {loaded: true};
+
 const render = (container, component) => {  
   container.append(component)
 }
@@ -18,40 +20,24 @@ const fetchUsers = api.fetchUsers();
 const fetchPosts = api.fetchPosts();
 const fetchComments = api.fetchComments();
 
-const handlerClick = (raw) => {
-  api.fetchComments().then(()=>{
-    raw.rerender();
-  });    
+const handlerClick = (raw, index) => {  
+  raw.rerender(); 
+  const items = Array.from(document.querySelectorAll('.comment'));  
+  items[index].setAttribute('style', 'color:red'); 
+  items[index].textContent = '...Loading';
+  api.fetchComments().then(()=>{    
+    raw.rerender();    
+  });  
 };
 
-Promise.all([fetchUsers, fetchPosts, fetchComments]).then(() => {
-  model.setModel();
-  
-  model.getModel().map((item) => {
-    const raw = new Raw(item, api.isLoaded);
-    render(tbody, raw.getElement());
-    raw.setClickHandler(()=>handlerClick(raw));    
+Promise.all([fetchUsers, fetchPosts, fetchComments])
+.then(() => {  
+  model.setModel();     
+})
+.then(()=>{
+  model.getModel().map((item, index) => {
+    const raw = new Raw(item, status.loaded);
+    render(tbody, raw.getElement());    
+    raw.setClickHandler(()=>handlerClick(raw, index));    
   });
 });
-
-const initialize = () => {
-  // const handleClick = (item, i) => {
-  //   const fields = document.querySelectorAll('tbody tr td:nth-child(3)');
-  //   const initial = fields[i].textContent;
-
-  //   item.addEventListener('click', () => {
-  //     if (fields[i].hasAttribute('style')) {
-  //       fields[i].removeAttribute('style');
-  //       fields[i].textContent = initial;
-  //     } else {
-  //       fields[i].setAttribute('style', '');
-  //       fields[i].textContent = '...Loading';
-  //       api
-  //         .fetchComments()
-  //         .then(() => api.setIsLoaded(true))
-  //         .then(() => (fields[i].textContent = initial));
-  //     }
-  //   });
-  // };
-};
-
