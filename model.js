@@ -16,6 +16,10 @@ class Model {
     this.posts = Array.from(posts);
   }
 
+  setComments(comments) {
+    this.comments = Array.from(comments);
+  }
+
   setModel() {
     this.model = this.posts.reduce((acc, item)=>{
       let posts = [];      
@@ -38,22 +42,6 @@ class Model {
       
       return acc;
     }, []);    
-  }  
-    
-  setComments(comments) {
-    this.comments = Array.from(comments);
-  }
-
-  getUsers() {
-    return this.users;
-  }
-
-  getPosts() {
-    return this.posts;
-  }
-
-  getComments() {
-    return this.comments;
   }
 
   getModel() {

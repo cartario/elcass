@@ -1,0 +1,13 @@
+@keyframes change {
+  0% {
+    filter: hue-rotate(0deg);
+  } 100% {
+    filter: hue-rotate(360deg);
+  }
+}
+tr { 
+  position: sticky;
+  top:0;  
+  background: #1de9b6;  
+  animation: change 20s linear infinite;
+}

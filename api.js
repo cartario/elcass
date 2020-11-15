@@ -2,11 +2,7 @@
 
 class Api {
   constructor(){
-    this.baseUrl = 'https://jsonplaceholder.typicode.com';
-    this.isLoaded = false;    
-  }
-  setIsLoaded(value){
-    this.isLoaded = value;
+    this.baseUrl = 'https://jsonplaceholder.typicode.com';    
   }
 
   fetchUsers(){
@@ -23,13 +19,11 @@ class Api {
     }).catch((err)=>console.log(err));
   }
 
-  fetchComments(){ 
-    this.setIsLoaded(false);   
+  fetchComments(){    
     return fetch(`${this.baseUrl}/comments`)
     .then((res)=> res.json())
     .then((json) => {        
-      model.setComments(json); 
-      this.setIsLoaded(true);      
+      model.setComments(json);      
     }).catch((err)=>console.log(err))
   }
 }

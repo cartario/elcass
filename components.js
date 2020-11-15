@@ -1,12 +1,5 @@
 'use strict';
 
-const createElement = (template) => {
-  const newElement = document.createElement(`div`);
-  newElement.innerHTML = template;
-
-  return newElement.firstChild;
-};
-
 const table = createElement(`<table>
     <thead>
       <tr style="display: flex; justify-content: space-between">
@@ -26,12 +19,10 @@ const table = createElement(`<table>
   </table>`);
 
 class Raw {
-  constructor({ name: name, item: post, item: count }, isLoaded) {
-    
+  constructor({ name: name, item: post, item: count }) {    
     this.name = name;
     this.post = post.title;
-    this.count = count.comments.length;
-    this.isLoaded = isLoaded;
+    this.count = count.comments.length;   
     this.element = null;    
   }
 
@@ -44,7 +35,7 @@ class Raw {
       ${this.post}
     </div>
     <div class="comment" style="color:blue">
-      ${!!this.isLoaded? this.count : '...Loading'}
+      ${this.count}
     </div>
   </div>`;
   }
