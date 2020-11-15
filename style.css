@@ -5,6 +5,7 @@
     filter: hue-rotate(360deg);
   }
 }
+
 tr { 
   position: sticky;
   top:0;  
