@@ -5,7 +5,7 @@ class Model {
     this.users = [];
     this.posts = [];
     this.comments = [];
-    this.denorm = [];    
+    this.model = [];    
   }
 
   setUsers(users) {
@@ -16,8 +16,8 @@ class Model {
     this.posts = Array.from(posts);
   }
 
-  setDenorm() {
-    this.denorm = this.posts.reduce((acc, item)=>{
+  setModel() {
+    this.model = this.posts.reduce((acc, item)=>{
       let posts = [];      
 
       const user = this.users.filter((user)=>{
@@ -56,7 +56,7 @@ class Model {
     return this.comments;
   }
 
-  getDenorm() {
-    return this.denorm;
+  getModel() {
+    return this.model;
   }
 }
