@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  const { createElement } = window.utilsPage;
+  const { createElement, debounce } = window.utilsPage;
 
   const table = createElement(
     `<table style="margin: 0 auto">
@@ -56,7 +56,7 @@
 
     setClickHandler(handler) {
       this.handler = handler;
-      this.element.addEventListener('click', this.handler);
+      this.element.addEventListener('click', debounce(this.handler));
     }
 
     removeElement() {
